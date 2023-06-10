@@ -102,14 +102,26 @@ mongoose
     }
   });
   
+app.get('/details/:id', async(req,res)=>{
+  const {id} = req.params;
+  const foundUser = await User.findById(id);
+  if(foundUser){
+    res.json({status:200, data:foundUser})
+  }else{
+    res.json({status:400, message:"Not found"})
+  }
+})
 
-
-  app.post('/update-profile', async (req, res) => {
-    const { username, details } = req.body;
+  app.post('/update-profile/:id', async (req, res) => {
+    const details = req.body;
+    const {id} = req.params;
+    console.log(id)
+    console.log(details)
+    // const username = details.username;
   
     try {
       // Find the user based on the provided username
-      const user = await User.findOne({ username });
+      const user = await User.findById(id)
   
       if (user) {
         // Update the user's details
