@@ -1,58 +1,37 @@
-const mongoose = require("mongoose");
-const teamSchema = mongoose.Schema({
-  Team_Id: String,
-  Team_Name: String,
-  Player_Type: String,
-  Player_Name: String,
-  Player_Email: String,
-  Player_Mobile: String,
-  Player_Gender: String,
-  Country: String,
-  Domain: String,
-  Course_Pursuing: String,
-  Course_Stream: String,
-  Specialization: String,
-  Course_Programme: String,
-  Year_of_Study: String,
-  Passing_Out_Year: Number,
-  Player_Organisation: String,
-  Work_Experience: String,
-  Reg: {
-    Status: String,
+const mongoose = require('mongoose')
+
+const userSchema = new mongoose.Schema({
+  email: {
+    type: String,
+    required: true,
   },
-  problem_statement_and_solution: String,
+  username: {
+    type: String,
+    required: true,
+  },
   password: {
     type: String,
-    default: "hackfest",
-    required: true,
+    // required: true,
   },
-  attendance_counter: {
-    type: Number,
-    default: 0,
+  details: {
+    name: String,
+    age: Number,
+    gender: String,
+    contact: String,
+    address: String,
+    adhar: String,
+    maritalstatus: String,
+    incomesource: String,
+    incomerange: String,
+    children: Number,
+    education: String,
+    occupation: String,
+    occupationtype: String,
+    workexperience: String,
+    workexperienceposition: String,
   },
-  refreshment_counter: {
-    type: Number,
-    default: 0,
-  },
-  refreshment_counter_two: {
-    type: Number,
-    default: 0,
-  },
-  current_absent: {
-    type: [Number],
-    default: [0],
-    required: true,
-  },
-  timesarray: {
-    type: [Date],
-    default: [],
-    required: true,
-  },
-  announcement: [
-    {
-      title: String,
-      description: String,
-    },
-  ],
-});
-module.exports = mongoose.model("Team", teamSchema);
+})
+
+const User = mongoose.model('User', userSchema)
+
+module.exports = User
